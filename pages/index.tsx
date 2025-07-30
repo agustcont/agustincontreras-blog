@@ -4,9 +4,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <Layout title="Home | Agustin Contreras">
-      <h1 className="text-5xl font-extrabold mb-6">Hey, I'm Agustin 👋</h1>
+      <h1 className="text-5xl font-extrabold mb-6">Hey, I&apos;m Agustin 👋</h1>
       <p className="text-xl leading-relaxed mb-8 text-gray-700">
-        I’m a Cloud & SQL Server Engineer sharing honest, hands-on tutorials for Linux, Windows, cloud automation, and the daily chaos of tech life.
+        I&apos;m a Cloud & SQL Server Engineer sharing honest, hands-on tutorials for Linux, Windows, cloud automation, and the daily chaos of tech life.
       </p>
 
       <div className="space-y-4">

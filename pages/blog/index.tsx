@@ -1,3 +1,15 @@
+type BlogPostMeta = {
+  title: string;
+  date: string;
+  description?: string;
+};
+
+type BlogIndexProps = {
+  posts: {
+    slug: string;
+    data: BlogPostMeta;
+  }[];
+};
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -6,17 +18,34 @@ import Layout from '../../components/Layout';
 
 export async function getStaticProps() {
   const files = fs.readdirSync(path.join('posts'));
+
   const posts = files.map((filename) => {
     const slug = filename.replace('.mdx', '');
     const mdx = fs.readFileSync(path.join('posts', filename), 'utf-8');
     const { data } = matter(mdx);
-    return { slug, data };
-  }).sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
-  return { props: { posts } };
+    // ✅ Explicitly cast the frontmatter
+    const frontMatter = data as {
+      title: string;
+      date: string;
+      description?: string;
+    };
+
+    return { slug, data: frontMatter };
+  });
+
+  posts.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
+
+  return {
+    props: { posts },
+  };
 }
 
-export default function BlogIndex({ posts }) {
+
+
+export default function BlogIndex({ posts }: BlogIndexProps) {
   return (
     <Layout title="Blog | Agustin Contreras">
       <h1 className="text-4xl font-bold mb-8">My Blog</h1>

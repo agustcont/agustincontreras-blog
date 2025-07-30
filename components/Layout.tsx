@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { ReactNode } from "react";
 
 type LayoutProps = {
@@ -23,13 +24,30 @@ export default function Layout({
       <header className="bg-white shadow sticky top-0 z-50">
         <nav className="max-w-4xl mx-auto flex items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center space-x-3">
-          <img src="/logo.png" alt="Agustin Contreras Logo" className="h-10 w-auto" />
-          <span className="text-lg font-semibold text-blue-600">Agustin Contreras</span>
+            <Image
+              src="/logo.png"
+              alt="Agustin Contreras Logo"
+              width={40}
+              height={40}
+              priority
+            />
+            <span className="text-lg font-semibold text-blue-600">
+              Agustin Contreras
+            </span>
           </Link>
           <div className="space-x-4 text-sm">
-            <Link href="/about" className="text-gray-700 hover:text-blue-600">About</Link>
-            <Link href="/blog" className="text-gray-700 hover:text-blue-600">Blog</Link>
-            <a href="https://www.youtube.com/@agustincontreras1520" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600">
+            <Link href="/about" className="text-gray-700 hover:text-blue-600">
+              About
+            </Link>
+            <Link href="/blog" className="text-gray-700 hover:text-blue-600">
+              Blog
+            </Link>
+            <a
+              href="https://www.youtube.com/@agustincontreras1520"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-blue-600"
+            >
               YouTube
             </a>
           </div>
